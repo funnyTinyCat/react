@@ -1,17 +1,21 @@
-export default function Entry()
+export default function Entry(props)
 {
+    console.log(props)
     return (
         <article className="journal-entry">
             <div className="main-image-container" >
-              <img className="main-image" src="https://scrimba.com/links/travel-journal-japan-image-url" alt="mount fuji" />
+              <img className="main-image" 
+                src={props.img.src} 
+                alt={props.img.alt}
+              />
             </div>
             <div>
                 <img className="marker" src="../src/images/marker.png" alt="map marker icon" />
-                <span className="country">Japan</span>
-                <a className="" href="https://maps.app.goo.gl/6RLYZDuuuqJ7kNGZ9" >View on Google Maps</a>
-                <h2 className="entry-title">Mount Fuji</h2>
-                <p className="trip-dates">12 Jan, 2021 - 24 Jan, 2021</p>
-                <p className="entry-text">Mount Fuji is the tallest mountain in Japan, standing at 3,776 meters (12,380 feet). Mount Fuji is the single most popular tourist site in Japan, for both Japanese and foreign tourists.
+                <span className="country">{props.country}</span>
+                <a className="" href={props.googleMapsLink} >View on Google Maps</a>
+                <h2 className="entry-title">{props.title}</h2>
+                <p className="trip-dates">{props.dates}</p>
+                <p className="entry-text">{props. text}
                 </p>
             </div>
         </article>
