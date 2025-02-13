@@ -1,12 +1,15 @@
 import React from "react"
+import IngredientsList from "./components/IngredientsList.jsx"
+import ClaudeRecipe from "./components/ClaudeRecipe"
 
 export default function Mainx()
 {
-    const [ingredients, setIngredients] = React.useState([]) // ["Chicken", "Oregano", "Tomatoes"]
+    const [ingredients, setIngredients] = React.useState(
+        ["all the main spices", "pasta", "ground beef", "tomato paste"]
+    )
+    // React.useState([]) // ["Chicken", "Oregano", "Tomatoes"]
+    const [recipeShown, setRecipeShown] = React.useState(false)
 
-    const ingredientsListItems = ingredients.map(ingredient => (
-        <li key={ingredient} >{ingredient}</li>
-    ))
 
     function addIngredient(event) {
         event.preventDefault()
@@ -21,6 +24,11 @@ export default function Mainx()
         // form.reset
     }
 
+    function toggleRecipeShown() {
+        setRecipeShown(prevShown => !prevShown)
+    }
+
+
     return (
         <main>
             <form onSubmit={addIngredient} className="add-ingredient-form">
@@ -32,9 +40,9 @@ export default function Mainx()
                 />
                 <button  >Add Ingredient</button>
             </form>
-            <ul>
-                {ingredientsListItems}
-            </ul>
+            { ingredients.length > 0 && <IngredientsList ingredients={ingredients} toggleRecipeShown={toggleRecipeShown} /> }
+            
+            { recipeShown && <ClaudeRecipe /> }
         </main>
     )
 }
